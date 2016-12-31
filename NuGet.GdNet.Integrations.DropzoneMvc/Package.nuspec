@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DropzoneMvc</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <title>DropzoneMvc</title>
     <authors>RabbitSoftware</authors>
     <owners>junioho</owners>
@@ -10,7 +10,7 @@
       Provides a MVC controller and uploader class that serve the DropzoneJS UI and handle files on the server.
     </description>
     <releaseNotes>
-      Tested DropzoneJS version 4.2.0
+      Tested with DropzoneJS version 4.2.0
     </releaseNotes>
     <summary>
     </summary>

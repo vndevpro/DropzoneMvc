@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using log4net;
 
@@ -14,23 +13,6 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
         public DropzoneUploader(HttpRequestBase request)
         {
             _request = request;
-        }
-
-        /// <summary>
-        /// Calculate the absolute paths of uploaded files
-        /// </summary>
-        /// <param name="rootFolder"></param>
-        /// <returns></returns>
-        public IEnumerable<string> GetActiveUploadedFiles(string rootFolder)
-        {
-            var attachments = _request.Params["dropzone_files"];
-
-            Logger.InfoFormat("dropzone_files is {0}", attachments);
-
-            return
-                attachments.Split(';')
-                           .Where(x => !string.IsNullOrWhiteSpace(x))
-                           .Select(relativePath => Path.Combine(rootFolder, relativePath));
         }
 
         public IEnumerable<string> UploadRequestFiles(string rootFolder, string temporaryFolder)

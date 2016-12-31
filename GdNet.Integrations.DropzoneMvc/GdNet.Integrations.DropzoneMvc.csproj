@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DropzoneAttachmentController.cs" />
     <Compile Include="Controllers\DropzoneUploader.cs" />
+    <Compile Include="Controllers\DropzoneMonitor.cs" />
     <Compile Include="Models\DropzoneComponentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
