@@ -7,24 +7,24 @@
     <authors>RabbitSoftware</authors>
     <owners>junioho</owners>
     <description>
-      A long description of the package. This shows up in the right pane of the Add Package Dialog as well as in the Package Manager Console when listing packages using the Get-Package command.
+      Provides a MVC controllers and uploader class that serve the DropzoneJS UI and handle file on the server
     </description>
     <releaseNotes>
+      V1.0.0 - Tested DropzoneJS version 4.2.0
     </releaseNotes>
     <summary>
-      A short description of the package. If specified, this shows up in the middle pane of the Add Package Dialog. If not specified, a truncated version of the description is used instead.
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/NuGet.GdNet.Integrations.DropzoneMvc</projectUrl>
+    <projectUrl>https://github.com/vndevpro/DropzoneMvc</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <copyright>Copyright @ RabbitSoftware 2016</copyright>
     <dependencies>
-        <group targetFramework="net40">
-          <dependency id="log4net" version="2.0.6" />
-          <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710" />
-        </group>
+      <group targetFramework="net40">
+        <dependency id="log4net" version="2.0.6" />
+        <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710" />
+      </group>
     </dependencies>
     <references></references>
     <tags>DropzoneJS, DropzoneJS MVC, RabbitSoftware</tags>
