@@ -1,0 +1,23 @@
+Tested dropzone version: 4.2.0
+---------------
+To add dropzone behavior into a page, please follow below steps:
+
+1. Add reference to the assembly
+2. Edit Routes configuration to make sure that the controller will be initialize property
+
+eg:
+
+routes.MapRoute("Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces
+            );
+
+
+3. Copy the view _DropzoneComponent.cshtml into the Shared
+4. Besure to register two bundles ~/Content/dropzonecss (css) and ~/bundles/dropzone (js)
+
+5. Besure to have this key in Web.config, Dropzone will load this key when saving files
+
+<!--A place to hold all temporary files-->
+    <add key="TempFilesRoot" value="~/App_Data/TempFiles" />
