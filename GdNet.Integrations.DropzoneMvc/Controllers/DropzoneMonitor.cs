@@ -23,7 +23,7 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
         /// <returns></returns>
         public IEnumerable<string> GetActiveUploadedFiles(string rootFolder)
         {
-            var attachments = _request.Params["dropzone_files"];
+            var attachments = _request.Form["dropzone_files"];
 
             _logger.InfoFormat("dropzone_files is {0}", attachments);
 

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DropzoneMvc</id>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <title>DropzoneMvc</title>
     <authors>RabbitSoftware</authors>
     <owners>junioho</owners>
@@ -10,6 +10,8 @@
       Provides a MVC controller and uploader class that serve the DropzoneJS UI and handle files on the server.
     </description>
     <releaseNotes>
+      V1.1.2 - Fix error: A potentially dangerous Request.Form value was detected from the client by access Request.Form instead of Request.Params
+      ---
       Tested with DropzoneJS version 4.2.0
     </releaseNotes>
     <summary>
