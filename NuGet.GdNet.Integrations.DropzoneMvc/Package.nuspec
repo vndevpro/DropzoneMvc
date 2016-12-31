@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>DropzoneMvc</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>DropzoneMvc</title>
     <authors>RabbitSoftware</authors>
     <owners>junioho</owners>
     <description>
-      Provides a MVC controllers and uploader class that serve the DropzoneJS UI and handle file on the server
+      Provides a MVC controller and uploader class that serve the DropzoneJS UI and handle files on the server.
     </description>
     <releaseNotes>
-      V1.0.0 - Tested DropzoneJS version 4.2.0
+      Tested DropzoneJS version 4.2.0
     </releaseNotes>
     <summary>
     </summary>
@@ -24,6 +24,7 @@
       <group targetFramework="net40">
         <dependency id="log4net" version="2.0.6" />
         <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710" />
+        <dependency id="dropzone" version="4.2.0" />
       </group>
     </dependencies>
     <references></references>
