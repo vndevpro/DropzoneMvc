@@ -1,8 +1,8 @@
-﻿using System;
+﻿using GdNet.Integrations.DropzoneMvc.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
-using GdNet.Integrations.DropzoneMvc.Models;
 
 namespace GdNet.Integrations.DropzoneMvc.Controllers
 {

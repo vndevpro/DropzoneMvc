@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using log4net;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using log4net;
 
 namespace GdNet.Integrations.DropzoneMvc.Controllers
 {
