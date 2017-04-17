@@ -1,4 +1,4 @@
-﻿namespace GdNet.Integrations.DropzoneMvc
+﻿namespace GdNet.Integrations.DropzoneMvc.Extensions
 {
     internal enum FileSizeUnit : byte
     {

@@ -1,0 +1,15 @@
+﻿@using GdNet.Integrations.DropzoneMvc.Extensions
+@using GdNet.Integrations.DropzoneMvc.Resources
+@model GdNet.Integrations.DropzoneMvc.Models.AttachmentViewModel
+
+<p>
+    <img src="@FileIconExtensions.GetFileIcon("/Content/fileicons", Model.Icon)" title=""/>
+    <a href="@Url.Action("Download", "Attachment", new { Model.Id })">
+        @Model.Name
+    </a>
+
+    @Model.Size.FormatByteSize()
+    <br />
+    @AttachmentResx.CreatedAt @Model.CreatedAt
+    @AttachmentResx.CreatedBy @Model.CreatedBy
+</p>

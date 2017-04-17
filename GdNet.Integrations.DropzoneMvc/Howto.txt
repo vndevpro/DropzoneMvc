@@ -19,5 +19,5 @@ routes.MapRoute("Default",
 
 5. Besure to have this key in Web.config, Dropzone will load this key when saving files
 
-<!--A place to hold all temporary files-->
+	<!--A place to hold all temporary files-->
     <add key="TempFilesRoot" value="~/App_Data/TempFiles" />

@@ -5,3 +5,4 @@
 /NuGet.GdNet.Integrations.DropzoneMvc/bin
 /*.suo
 /NuGet.GdNet.Integrations.DropzoneMvc/*.user
+*.user
