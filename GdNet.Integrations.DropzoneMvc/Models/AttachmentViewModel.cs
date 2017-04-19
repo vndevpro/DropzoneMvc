@@ -10,6 +10,8 @@
 
         public long Size { get; set; }
 
+        public string Href { get; set; }
+
         public string Icon
         {
             get

@@ -3,8 +3,8 @@
 @model GdNet.Integrations.DropzoneMvc.Models.AttachmentViewModel
 
 <p>
-    <img src="@FileIconExtensions.GetFileIcon("/Content/fileicons", Model.Icon)" title=""/>
-    <a href="@Url.Action("Download", "Attachment", new { Model.Id })">
+    <img src='@FileIconExtensions.GetFileIcon("/Content/fileicons", Model.Icon)' title=""/>
+    <a href="@Model.Href">
         @Model.Name
     </a>
 
