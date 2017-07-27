@@ -1,13 +1,27 @@
 ﻿using GdNet.Integrations.DropzoneMvc.Models;
+using GdNet.Integrations.DropzoneMvc.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Net;
 using System.Web.Mvc;
 
 namespace GdNet.Integrations.DropzoneMvc.Controllers
 {
     public class DropzoneAttachmentController : Controller
     {
+        private readonly IDropzoneAttachmentSecurityCheck _attachmentSecurityCheck;
+
+        public DropzoneAttachmentController()
+            : this(new AllowAllDropzoneAttachmentSecurityCheck())
+        {
+        }
+
+        public DropzoneAttachmentController(IDropzoneAttachmentSecurityCheck attachmentSecurityCheck)
+        {
+            _attachmentSecurityCheck = attachmentSecurityCheck;
+        }
+
         public ActionResult GetComponent(Guid? referenceId)
         {
             var model = new DropzoneComponentViewModel()
@@ -27,8 +41,13 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
         [HttpPost]
         public ActionResult Handle()
         {
-            var attachmentInfos = UploadFiles();
-            return Json(attachmentInfos, JsonRequestBehavior.AllowGet);
+            if (_attachmentSecurityCheck.ValidatePermission())
+            {
+                var attachmentInfos = UploadFiles();
+                return Json(attachmentInfos, JsonRequestBehavior.AllowGet);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
 
         private IEnumerable<string> UploadFiles()
