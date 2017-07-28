@@ -12,11 +12,6 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
     {
         private readonly IDropzoneAttachmentSecurityCheck _attachmentSecurityCheck;
 
-        public DropzoneAttachmentController()
-            : this(new AllowAllDropzoneAttachmentSecurityCheck())
-        {
-        }
-
         public DropzoneAttachmentController(IDropzoneAttachmentSecurityCheck attachmentSecurityCheck)
         {
             _attachmentSecurityCheck = attachmentSecurityCheck;
