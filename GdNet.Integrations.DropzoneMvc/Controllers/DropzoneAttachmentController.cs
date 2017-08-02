@@ -3,6 +3,7 @@ using GdNet.Integrations.DropzoneMvc.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Net;
 using System.Web.Mvc;
 
@@ -47,9 +48,11 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
 
         private IEnumerable<string> UploadFiles()
         {
-            var rootFolder = Server.MapPath(ConfigurationManager.AppSettings["TempFilesRoot"]);
+            var tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"];
+            tempFilesRoot = Path.IsPathRooted(tempFilesRoot) ? tempFilesRoot : Server.MapPath(tempFilesRoot);
+
             var temporaryFolder = Request.Headers["X-ComponentId"];
-            return new DropzoneUploader(Request).UploadRequestFiles(rootFolder, temporaryFolder);
+            return new DropzoneUploader(Request).UploadRequestFiles(tempFilesRoot, temporaryFolder);
         }
     }
 }

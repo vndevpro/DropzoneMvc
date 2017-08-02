@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DropzoneMvc</id>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <title>DropzoneMvc</title>
     <authors>RabbitSoftware</authors>
     <owners>junioho</owners>
@@ -11,6 +11,7 @@
       Tested with DropzoneJS version 4.2.0.
     </description>
     <releaseNotes>
+      V1.3.2 - TempFilesRoot can be virtual or rooted
       V1.3.1 - DropzoneAttachmentController now has only one constructor, to work easier with SimpleInjector
       V1.3.0 - Add security check interface into the controller
       V1.2.0 - Add extension methods for file size and file icons. Add new view models.
