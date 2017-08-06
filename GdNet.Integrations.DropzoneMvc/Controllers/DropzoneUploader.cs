@@ -39,6 +39,7 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
                     var fileAsBytes = new byte[file.ContentLength];
                     file.InputStream.Read(fileAsBytes, 0, file.ContentLength);
                     fw.Write(fileAsBytes, 0, fileAsBytes.Length);
+                    fw.Flush();
                 }
 
                 Logger.InfoFormat("Uploaded file {0} to {1}", file.FileName, targetFolder);

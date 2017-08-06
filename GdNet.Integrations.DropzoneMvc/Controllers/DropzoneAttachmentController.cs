@@ -12,10 +12,14 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
     public class DropzoneAttachmentController : Controller
     {
         private readonly IDropzoneAttachmentSecurityCheck _attachmentSecurityCheck;
+        private readonly string _tempFilesRoot;
 
         public DropzoneAttachmentController(IDropzoneAttachmentSecurityCheck attachmentSecurityCheck)
         {
             _attachmentSecurityCheck = attachmentSecurityCheck;
+
+            _tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"];
+            _tempFilesRoot = Path.IsPathRooted(_tempFilesRoot) ? _tempFilesRoot : Server.MapPath(_tempFilesRoot);
         }
 
         public ActionResult GetComponent(Guid? referenceId)
@@ -48,11 +52,8 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
 
         private IEnumerable<string> UploadFiles()
         {
-            var tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"];
-            tempFilesRoot = Path.IsPathRooted(tempFilesRoot) ? tempFilesRoot : Server.MapPath(tempFilesRoot);
-
             var temporaryFolder = Request.Headers["X-ComponentId"];
-            return new DropzoneUploader(Request).UploadRequestFiles(tempFilesRoot, temporaryFolder);
+            return new DropzoneUploader(Request).UploadRequestFiles(_tempFilesRoot, temporaryFolder);
         }
     }
 }
