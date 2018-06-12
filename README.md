@@ -1,5 +1,6 @@
 # DropzoneMvc
 MVC controller and file upload handling in ASP.NET MVC
+(https://www.nuget.org/packages/DropzoneMvc/)
 
 # Steps to install it on your MVC App
 
@@ -10,7 +11,7 @@ MVC controller and file upload handling in ASP.NET MVC
     <add key="TempFilesRoot" value="~/App_Data/TempFiles" />
 ```
     
-2. Install the package into your app
+2. Install the package into your app:
 
     Install-Package DropzoneMvc
   
