@@ -32,4 +32,4 @@ NOTES:
 
 /!\ JQuery must be configured & put in head tag
 
-/!\ Dropzone js and css bundles must be declared (in BundleConfig.cs file) -> these bundles will be reference by the view _DropzoneComponent.cshtml
+/!\ Dropzone js and css bundles must be declared (in BundleConfig.cs file) -> these bundles will be referenced by the view _DropzoneComponent.cshtml (in DropzoneMvcDemo\Views\Shared)
