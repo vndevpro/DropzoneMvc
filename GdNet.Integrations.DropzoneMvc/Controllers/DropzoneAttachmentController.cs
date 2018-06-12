@@ -6,19 +6,26 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace GdNet.Integrations.DropzoneMvc.Controllers
 {
     public class DropzoneAttachmentController : Controller
     {
         private readonly IDropzoneAttachmentSecurityCheck _attachmentSecurityCheck;
-        private readonly string _tempFilesRoot;
+
+        private string _tempFilesRoot;
 
         public DropzoneAttachmentController(IDropzoneAttachmentSecurityCheck attachmentSecurityCheck)
         {
             _attachmentSecurityCheck = attachmentSecurityCheck;
+            _tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"] ?? "~/App_Data";
+        }
 
-            _tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"];
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
             _tempFilesRoot = Path.IsPathRooted(_tempFilesRoot) ? _tempFilesRoot : Server.MapPath(_tempFilesRoot);
         }
 

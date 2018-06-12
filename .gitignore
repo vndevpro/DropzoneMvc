@@ -6,3 +6,5 @@
 /*.suo
 /NuGet.GdNet.Integrations.DropzoneMvc/*.user
 *.user
+/DropzoneMvcDemo/bin
+/DropzoneMvcDemo/obj
