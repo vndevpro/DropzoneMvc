@@ -31,4 +31,5 @@ Now you get all the files, just save them as your logic requires.
 NOTES:
 
 /!\ JQuery must be configured & put in head tag
+
 /!\ Dropzone js and css bundles must be declared (in BundleConfig.cs file) -> these bundles will be reference by the view _DropzoneComponent.cshtml
