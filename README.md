@@ -1,5 +1,6 @@
 # DropzoneMvc
-MVC controller and file upload handling in ASP.NET MVC 
+MVC controller and file upload handling in ASP.NET MVC
+(https://www.nuget.org/packages/DropzoneMvc/)
 
 # Steps to install it on your MVC App
 
@@ -10,7 +11,7 @@ MVC controller and file upload handling in ASP.NET MVC
     <add key="TempFilesRoot" value="~/App_Data/TempFiles" />
 ```
     
-2. Install the package into your app
+2. Install the package into your app:
 
     Install-Package DropzoneMvc
   
@@ -28,8 +29,11 @@ MVC controller and file upload handling in ASP.NET MVC
 
 Now you get all the files, just save them as your logic requires.
 
-NOTES:
+Please check some notes below:
 
 /!\ JQuery must be configured & put in head tag
 
 /!\ Dropzone js and css bundles must be declared (in BundleConfig.cs file) -> these bundles will be referenced by the view _DropzoneComponent.cshtml (in **DropzoneMvcDemo\Views\Shared**)
+
+/!\ You must have to config an IoC for IDropzoneAttachmentSecurityCheck => Check the demo setup with SimpleInjector
+
