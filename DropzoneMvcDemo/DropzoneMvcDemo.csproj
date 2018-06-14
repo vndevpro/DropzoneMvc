@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props" Condition="Exists('..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DropzoneMvcDemo</RootNamespace>
     <AssemblyName>DropzoneMvcDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -24,7 +23,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>79c610d8</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>21f6032a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,9 +80,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -278,7 +277,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
@@ -301,7 +302,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59794</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -321,7 +322,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
