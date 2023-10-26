@@ -16,3 +16,8 @@
 /DropzoneV5DemoAspNetMvc/App_Data
 /DropzoneV5DemoAspNetMvc/bin
 /FileUploadHandler/obj/Debug
+/DropzoneV5WithAspNetCore/obj
+/.vs/DropzoneMvc/v17
+/DropzoneV5WithAspNetCore/bin/Debug/net6.0
+*.cache
+/FileUploadHandler/bin

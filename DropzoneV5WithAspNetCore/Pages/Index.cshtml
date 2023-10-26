@@ -1,0 +1,254 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="//unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="//unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Upload Files with DropzoneJS & ASP.NET Core Razor Pages app</a>.</p>
+</div>
+
+<div class="row">
+    <h3>Sample 1 - Auto upload</h3>
+    <div class="col">
+        <form id="my-dropzone" action="/FilesHandler" class="dropzone" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="fallback">
+                <input name="file" type="file" multiple />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <h3>Sample 2 - Form submit upload</h3>
+    <div class="col">
+        <style type="text/css">
+            /* Dropzone stylesheet */
+            #actions {
+                margin: 2em 0;
+            }
+
+            .progress {
+                width: 10rem;
+            }
+
+            /* Mimic table appearance */
+            div.table {
+                display: table;
+            }
+
+                div.table .file-row {
+                    display: table-row;
+                }
+
+                    div.table .file-row > div {
+                        display: table-cell;
+                        vertical-align: top;
+                        border-top: 1px solid #ddd;
+                        padding: 8px;
+                    }
+
+                    div.table .file-row:nth-child(odd) {
+                        background: #f9f9f9;
+                    }
+
+            /* The total progress gets shown by event listeners */
+            #total-progress {
+                opacity: 0;
+                transition: opacity 0.3s linear;
+            }
+
+            /* Hide the progress bar when finished */
+            #previews .file-row.dz-success .progress {
+                opacity: 0;
+                transition: opacity 0.3s linear;
+            }
+
+            /* Hide the delete button initially */
+            #previews .file-row .delete {
+                display: none;
+            }
+
+            /* Hide the start and cancel buttons and show the delete button */
+
+            #previews .file-row.dz-success .start,
+            #previews .file-row.dz-success .cancel {
+                display: none;
+            }
+
+            #previews .file-row.dz-success .delete {
+                display: block;
+            }
+        </style>
+
+        <form action="@Url.Page("Index")" method="post" enctype="multipart/form-data" id="manual-upload-form">
+            @Html.AntiForgeryToken()
+            <div id="actions" class="row">
+                <div class="col-6">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <span class="btn btn-sm btn-success fileinput-button dz-clickable">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Add files...</span>
+                    </span>
+                    <button btn-sm type="reset" class="btn btn-sm btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel upload</span>
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-primary start">
+                        <i class="glyphicon glyphicon-upload"></i>
+                        <span>Upload & Save</span>
+                    </button>
+                </div>
+                <div class="col-6">
+                    <!-- The global file processing state -->
+                    <span class="fileupload-process">
+                        <div id="total-progress"
+                             class="progress active"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             aria-valuenow="0">
+                            <div class="progress-bar progress-bar-striped progress-bar-success"
+                                 role="progressbar"
+                                 style="width: 0%"
+                                 data-dz-uploadprogress></div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+            <!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
+            <div class="table table-striped">
+                <div id="previews"></div>
+            </div>
+
+            <div id="template" style="display:none;">
+                <div class="file-row">
+                    <!-- This is used as the file preview template -->
+                    <div>
+                        <span class="preview"><img data-dz-thumbnail /></span>
+                    </div>
+                    <div>
+                        <p class="name" data-dz-name></p>
+                        <strong class="error text-danger" data-dz-errormessage></strong>
+                    </div>
+                    <div>
+                        <p class="size" data-dz-size></p>
+                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary start">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>Start</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-warning cancel">
+                            <i class="glyphicon glyphicon-ban-circle"></i>
+                            <span>Cancel</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-danger delete">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    Dropzone.options.myDropzone = {
+        uploadMultiple: true,
+        addRemoveLinks: true,
+        maxFilesize: 10,
+        headers: {
+            'X-DZ-ComponentId': '@Guid.NewGuid()'
+        }
+    };
+
+    var previewTemplate = document.querySelector("#template").innerHTML;
+
+    var manualUploadForm = new Dropzone(document.querySelector("#manual-upload-form"), {
+        // The configuration we've talked about above
+        autoProcessQueue: false,
+        uploadMultiple: true,
+
+        parallelUploads: 100,
+        maxFiles: 100,
+
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+
+        previewTemplate: previewTemplate,
+        previewsContainer: "#previews", // Define the container to display the previews
+
+        clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
+
+        // The setting up of the dropzone
+        init: function () {
+            var myDropzone = this;
+
+            // First change the button to actually tell Dropzone to process the queue.
+            this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
+                // Make sure that the form isn't actually being sent.
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone.processQueue();
+            });
+
+            // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+            // of the sending event because uploadMultiple is set to true.
+            this.on("sendingmultiple", function () {
+                // Gets triggered when the form is actually being sent.
+                // Hide the success button or the complete form.
+            });
+            this.on("successmultiple", function (files, response) {
+                // Gets triggered when the files have successfully been sent.
+                // Redirect user or notify of success.
+            });
+            this.on("errormultiple", function (files, response) {
+                // Gets triggered when there was an error sending the files.
+                // Maybe show form again, and notify user of error
+            });
+
+            
+            this.on("addedfile", function (file) {
+                // Hookup the start button
+                file.previewElement.querySelector(".start").onclick = function () { myDropzone.enqueueFile(file); };
+            });
+            // Update the total progress bar
+            this.on("totaluploadprogress", function (progress) {
+                myDropzone.element.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            });
+            this.on("sending", function (file) {
+                // Show the total progress bar when upload starts
+                myDropzone.element.querySelector("#total-progress").style.opacity = "1";
+                // And disable the start button
+                file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+            });
+            // Hide the total progress bar when nothing's uploading anymore
+            this.on("queuecomplete", function (progress) {
+                myDropzone.element.querySelector("#total-progress").style.opacity = "0";
+            });
+
+            // Setup the buttons for all transfers
+            // The "add files" button doesn't need to be setup because the config
+            // `clickable` has already been specified.
+            this.element.querySelector("#actions .start").onclick = function () {
+                myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+            };
+            this.element.querySelector("#actions .cancel").onclick = function () {
+                myDropzone.removeAllFiles(true);
+            };
+        }
+    });
+</script>
