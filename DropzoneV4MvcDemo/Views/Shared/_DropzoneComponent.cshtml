@@ -1,0 +1,173 @@
+﻿@model GdNet.Integrations.DropzoneMvc.Models.DropzoneComponentViewModel
+
+@Scripts.Render("~/bundles/dropzone")
+
+@*http://www.dropzonejs.com/bootstrap.html*@
+
+<style type="text/css">
+    /* Mimic table appearance */
+    div.table {
+        display: table;
+    }
+
+    div.table .file-row {
+        display: table-row;
+    }
+
+    div.table .file-row > div {
+        display: table-cell;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    div.table .file-row:nth-child(odd) {
+        background: #f9f9f9;
+    }
+
+
+    /* The total progress gets shown by event listeners */
+    #total-progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+    }
+
+    /* Hide the progress bar when finished */
+    #previews .file-row.dz-success .progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+    }
+
+    /* Hide the delete button initially */
+    #previews .file-row .delete {
+        display: none;
+    }
+
+    /* Hide the start and cancel buttons and show the delete button */
+
+    #previews .file-row.dz-success .start,
+    #previews .file-row.dz-success .cancel {
+        display: none;
+    }
+
+    #previews .file-row.dz-success .delete {
+        display: block;
+    }
+</style>
+
+<div id="my-awesome-dropzone">
+    <span class="btn btn-success fileinput-button dz-clickable">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+    </span>
+</div>
+<br />
+
+<div class="table table-striped" class="files" id="previews">
+    <div id="template" class="file-row">
+        <!-- This is used as the file preview template -->
+        <div>
+            <span class="preview">
+                <img data-dz-thumbnail />
+            </span>
+        </div>
+        <div>
+            <p class="name" data-dz-name></p>
+            <strong class="error text-danger" data-dz-errormessage></strong>
+        </div>
+        <div>
+            <p class="size" data-dz-size></p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar progress-bar-success" style="width: 0%;" data-dz-uploadprogress></div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary start">
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Start</span>
+            </button>
+            <button data-dz-remove class="btn btn-warning cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel</span>
+            </button>
+            <button data-dz-remove class="btn btn-danger delete">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Delete</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="dropzone_files" id="dropzone_files" />
+
+<script type="text/javascript">
+    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+    var previewNode = document.querySelector("#template");
+    previewNode.id = "";
+    var previewTemplate = previewNode.parentNode.innerHTML;
+    previewNode.parentNode.removeChild(previewNode);
+
+    var myDropzone = new Dropzone(document.getElementById('my-awesome-dropzone'), { // Make the whole body a dropzone
+        url: '@Model.TargetAction', // Set the url
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+        previewTemplate: previewTemplate,
+        autoQueue: true, // Make sure the files aren't queued until manually added
+        previewsContainer: "#previews", // Define the container to display the previews
+        clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
+        headers: {
+            'X-ComponentId': '@Model.ComponentId'
+        },
+        init: function () {
+            var $this = this;
+
+            this.on("success", function (file, response) {
+                var attachment = response;
+                var files = $('#dropzone_files').val() + ';' + attachment;
+                $('#dropzone_files').val(files);
+            });
+
+            this.on("addedfile", function (file) {
+                // Hookup the start button
+                file.previewElement.querySelector(".start").onclick = function () { $this.enqueueFile(file); };
+            });
+
+            this.on("removedfile", function (file) {
+                // When a file has been removed
+                var regex = new RegExp('\\\\' + file.name, 'g');
+                var files = $('#dropzone_files').val().split(';').filter(function (f) {
+                    return f.match(regex) == null;
+                });
+                $('#dropzone_files').val(files.join(';'));
+            });
+
+            // Update the total progress bar
+            this.on("totaluploadprogress", function (progress) {
+                //document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            });
+
+            this.on("sending", function (file) {
+                //// Show the total progress bar when upload starts
+                //document.querySelector("#total-progress").style.opacity = "1";
+                //// And disable the start button
+                file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+            });
+
+            // Hide the total progress bar when nothing's uploading anymore
+            this.on("queuecomplete", function (progress) {
+                //document.querySelector("#total-progress").style.opacity = "0";
+            });
+        },
+        maxFilesize: 30, // In MB
+    });
+
+    // Setup the buttons for all transfers
+    // The "add files" button doesn't need to be setup because the config
+    // `clickable` has already been specified.
+    $("#actions .start").onclick = function () {
+        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+    };
+    //document.querySelector("#actions .cancel").onclick = function () {
+    //    myDropzone.removeAllFiles(true);
+    //};
+</script>

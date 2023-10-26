@@ -8,3 +8,11 @@
 *.user
 /DropzoneMvcDemo/bin
 /DropzoneMvcDemo/obj
+/.vs/DropzoneMvc/FileContentIndex
+*.config
+/DropzoneV4MvcDemo/App_Data/TempFiles
+/DropzoneV4MvcDemo/bin
+/DropzoneV4MvcDemo/obj/Debug
+/DropzoneV5DemoAspNetMvc/App_Data
+/DropzoneV5DemoAspNetMvc/bin
+/FileUploadHandler/obj/Debug

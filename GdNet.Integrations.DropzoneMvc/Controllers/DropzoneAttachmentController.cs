@@ -1,10 +1,9 @@
-﻿using GdNet.Integrations.DropzoneMvc.Models;
-using GdNet.Integrations.DropzoneMvc.Services;
+﻿using FileUploadHandler;
+using GdNet.Integrations.DropzoneMvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Net;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -12,11 +11,11 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
 {
     public class DropzoneAttachmentController : Controller
     {
-        private readonly IDropzoneAttachmentSecurityCheck _attachmentSecurityCheck;
+        private readonly IAttachmentSecurityService _attachmentSecurityCheck;
 
         private string _tempFilesRoot;
 
-        public DropzoneAttachmentController(IDropzoneAttachmentSecurityCheck attachmentSecurityCheck)
+        public DropzoneAttachmentController(IAttachmentSecurityService attachmentSecurityCheck)
         {
             _attachmentSecurityCheck = attachmentSecurityCheck;
             _tempFilesRoot = ConfigurationManager.AppSettings["TempFilesRoot"] ?? "~/App_Data";
@@ -48,19 +47,15 @@ namespace GdNet.Integrations.DropzoneMvc.Controllers
         [HttpPost]
         public ActionResult Handle()
         {
-            if (_attachmentSecurityCheck.ValidatePermission())
-            {
-                var attachmentInfos = UploadFiles();
-                return Json(attachmentInfos, JsonRequestBehavior.AllowGet);
-            }
-
-            return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            var attachmentInfos = UploadFiles();
+            return Json(attachmentInfos, JsonRequestBehavior.AllowGet);
         }
 
         private IEnumerable<string> UploadFiles()
         {
             var temporaryFolder = Request.Headers["X-ComponentId"];
-            return new DropzoneUploader(Request).UploadRequestFiles(_tempFilesRoot, temporaryFolder);
+            return new HttpRequestFilesUploader(Request, _attachmentSecurityCheck)
+                .UploadRequestFiles(_tempFilesRoot, temporaryFolder);
         }
     }
 }

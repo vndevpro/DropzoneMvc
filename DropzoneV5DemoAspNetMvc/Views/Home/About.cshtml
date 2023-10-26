@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<script src="//unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="//unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Add your files here.</p>
+
+    <div id="template-container" style="display:none;">
+        <div class="dz-preview dz-file-preview dz-processing dz-success dz-complete">
+            <div class="dz-image">
+                <img data-dz-thumbnail />
+            </div>
+            <div class="dz-details">
+                <div class="dz-filename"><span data-dz-name></span></div>
+                <div class="dz-size" data-dz-size></div>
+            </div>
+            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+            <div class="dz-success-mark"><span>✔</span></div>
+            <div class="dz-error-mark"><span>✘</span></div>
+            <div class="dz-error-message"><span data-dz-errormessage></span></div>
+        </div>
+    </div>
+
+    <script>
+        Dropzone.options.myAwesomeDropzone = { // camelized version of the `id`
+            previewTemplate: document.querySelector("#template-container").innerHTML,
+            maxFilesize: 2, // MB
+            maxFiles: 5,    // Only allow few files
+            addRemoveLinks: true,
+            headers: {
+                'X-DZ-ComponentId': '@Guid.NewGuid()'
+            }
+        };
+    </script>
+
+    <form action="/Home/HandleFiles"
+          class="dropzone"
+          id="my-awesome-dropzone">
+    </form>
+
+</main>
