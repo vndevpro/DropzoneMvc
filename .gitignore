@@ -21,3 +21,5 @@
 /DropzoneV5WithAspNetCore/bin/Debug/net6.0
 *.cache
 /FileUploadHandler/bin
+/FileUploadHandlerV6/obj
+/FileUploadHandlerV6/bin/Debug/net6.0
