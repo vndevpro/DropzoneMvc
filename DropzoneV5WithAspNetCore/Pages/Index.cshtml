@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-    <h3>Sample 1 - Auto upload</h3>
+    <h3>Sample 1 - Auto upload after files are selected</h3>
     <small>Max file size: 2MB, max nb of files: 5</small>
     <br />
     <br />
@@ -31,11 +31,11 @@
 
 <div class="row">
     <div class="row">
-        <div class="col-6">
-            <h3>Sample 2 - Manual upload</h3>
+        <div class="col-7">
+            <h3>Sample 2 - Manual upload after clicked the button</h3>
             <small>Max file size: 5MB, max nb of files: 5</small>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <button type="button" class="btn btn-primary" id="act-manual-upload">
                 Upload Now
             </button>
@@ -71,6 +71,7 @@
         addRemoveLinks: true,
         maxFilesize: 5,
         maxFiles: 5,
+        parallelUploads: 5,
         headers: {
             'X-DZ-ComponentId': '@Guid.NewGuid()'
         },

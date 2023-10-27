@@ -17,9 +17,30 @@ namespace DropzoneWithAspNetCore.Pages
         {
         }
 
+        public IActionResult OnGetCleanup()
+        {
+            var deleteCount = 0;
+            var tempFilesRoot = Path.Combine(_contentRoot, "App_Data");
+
+            foreach (var subDir in Directory.GetDirectories(tempFilesRoot))
+            {
+                if (DateTime.Now - Directory.GetLastWriteTime(subDir) > TimeSpan.FromHours(1))
+                {
+                    Directory.Delete(subDir, true);
+                    deleteCount += 1;
+                }
+            }
+
+            return new ContentResult()
+            {
+                Content = $"OK - Deleted {deleteCount}",
+            };
+        }
+
         public IActionResult OnPost()
         {
             var files = UploadFiles();
+
             return new JsonResult(new
             {
                 FilesUploaded = files
