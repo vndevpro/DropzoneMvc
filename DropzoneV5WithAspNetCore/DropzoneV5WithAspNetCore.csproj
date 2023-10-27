@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FileUploadHandler" Version="6.0.0" />
+    <PackageReference Include="FileUploadHandler" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.24" />
   </ItemGroup>
 

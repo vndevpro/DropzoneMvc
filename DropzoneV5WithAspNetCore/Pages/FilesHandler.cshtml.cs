@@ -55,10 +55,10 @@ namespace DropzoneWithAspNetCore.Pages
                 temporaryFolder = Guid.NewGuid().ToString();
             }
 
-            var tempFilesRoot = Path.Combine(_contentRoot, "App_Data");
+            var tempFilesRoot = Path.Combine(_contentRoot, "App_Data", temporaryFolder);
 
-            var uploader = new HttpRequestFilesUploader(Request, new AllowAllAttachmentSecurityService());
-            return uploader.UploadRequestFiles(tempFilesRoot, temporaryFolder);
+            var uploader = new HttpRequestFilesUploader(Request);
+            return uploader.UploadRequestFiles(tempFilesRoot);
         }
     }
 }
