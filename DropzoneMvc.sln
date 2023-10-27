@@ -5,13 +5,6 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdNet.Integrations.DropzoneMvc", "GdNet.Integrations.DropzoneMvc\GdNet.Integrations.DropzoneMvc.csproj", "{9ACF48FD-2106-4F56-B0AA-42988FA181EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E8608E64-C1F2-4B5D-8BD9-5537AB4BCCA9}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadHandler", "FileUploadHandler\FileUploadHandler.csproj", "{2C1A77F9-3943-49F9-99C2-74FBEAB20A3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropzoneV5DemoAspNetMvc", "DropzoneV5DemoAspNetMvc\DropzoneV5DemoAspNetMvc.csproj", "{E7046658-707C-4F3E-A19C-6F55036368C9}"
@@ -20,7 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropzoneV4MvcDemo", "Dropzo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DropzoneV5WithAspNetCore", "DropzoneV5WithAspNetCore\DropzoneV5WithAspNetCore.csproj", "{37B515FC-799E-436E-B246-05D789880D02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadHandlerV6", "FileUploadHandlerV6\FileUploadHandlerV6.csproj", "{AF6AA065-27DD-45CC-8B7E-2F9894DFEDF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadHandlerV6", "FileUploadHandlerV6\FileUploadHandlerV6.csproj", "{AF6AA065-27DD-45CC-8B7E-2F9894DFEDF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{FF626C8B-FE28-420D-A406-2261FAA1EE2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetFramework", "NetFramework", "{53B6F945-C86D-4E5D-8E4C-FFD2CBAB66E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetFrameworkLibs", "NetFrameworkLibs", "{9DFC5E09-A3E1-45E5-BECA-060B40A5B7B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +54,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9ACF48FD-2106-4F56-B0AA-42988FA181EF} = {9DFC5E09-A3E1-45E5-BECA-060B40A5B7B2}
+		{2C1A77F9-3943-49F9-99C2-74FBEAB20A3B} = {9DFC5E09-A3E1-45E5-BECA-060B40A5B7B2}
+		{E7046658-707C-4F3E-A19C-6F55036368C9} = {53B6F945-C86D-4E5D-8E4C-FFD2CBAB66E7}
+		{4BBDF305-44FC-499B-B1CB-6D4487FE0A3F} = {53B6F945-C86D-4E5D-8E4C-FFD2CBAB66E7}
+		{37B515FC-799E-436E-B246-05D789880D02} = {FF626C8B-FE28-420D-A406-2261FAA1EE2C}
+		{AF6AA065-27DD-45CC-8B7E-2F9894DFEDF3} = {FF626C8B-FE28-420D-A406-2261FAA1EE2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37DA638B-6C2E-458F-A24C-98FD99E972ED}

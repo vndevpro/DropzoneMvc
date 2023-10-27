@@ -23,3 +23,5 @@
 /FileUploadHandler/bin
 /FileUploadHandlerV6/obj
 /FileUploadHandlerV6/bin/Debug/net6.0
+/DropzoneV5WithAspNetCore/App_Data
+/.vs
