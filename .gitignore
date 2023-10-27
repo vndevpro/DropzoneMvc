@@ -25,3 +25,7 @@
 /FileUploadHandlerV6/bin/Debug/net6.0
 /DropzoneV5WithAspNetCore/App_Data
 /.vs
+/DropzoneV4MvcDemo/obj/Release
+/DropzoneV5WithAspNetCore/bin/Release/net6.0
+/DropzoneV5DemoAspNetMvc/obj/Release
+/FileUploadHandler/obj/Release
